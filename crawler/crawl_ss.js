@@ -9,7 +9,7 @@ module.exports = function () {
       const reg = /data:image.+" /g;
       const result = text.match(reg)
         .map(item => item.slice(22,-2))
-        .map(item => new Buffer(item,'base64'));
+        .map(item => Buffer.from(item,'base64'));
       const links = await Promise.all(result.map(item => buffer2string(item)));
       return links;
     })
