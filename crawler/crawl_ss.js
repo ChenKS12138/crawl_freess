@@ -1,5 +1,5 @@
 const {default:axios} = require('axios');
-const buffer2string = require('./buffer2string');
+const buffer2string = require('../utils/buffer2string');
 const target = "https://show.freess.info/";
 
 module.exports = function () {
