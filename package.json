@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "jimp": "^0.6.4",
+    "koa-router": "^7.4.0",
     "koa2": "^2.0.0-alpha.7",
     "qrcode-reader": "^1.0.4"
   }
