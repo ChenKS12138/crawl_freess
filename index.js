@@ -1,5 +1,6 @@
 const koa = require('koa2');
 const crawl = require('./crawler/crawl_ssr4');
+const crawl2 = require('./crawler/crawl_ssr5');
 const string2base64 = require('./utils/string2base64');
 const ss2ssr = require('./utils/ss2ssr');
 const koaRouter = require('koa-router');
@@ -7,7 +8,8 @@ const exec = require('child_process').exec;
 
 const router = new koaRouter();
 router.get('/',async ctx => {
-  let data = await crawl();
+  const response = await Promise.all([crawl(),crawl2()]);
+  const data = [...response[0],...response[1]];
   ctx.body = string2base64(data.join("\n"));
 });
 router.post('/deploy',async ctx => {
