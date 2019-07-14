@@ -13,7 +13,11 @@ const exec = require('child_process').exec;
 const router = new koaRouter();
 router.get('/',async ctx => {
   const response = await Promise.all([crawl(),crawl2(),crawl3(),crawl4(),crawl5()]);
-  const data = [...response[0],...response[1]];
+  let data=[];
+  for(let i=0;i<response.length;i++){
+    data=[...data,...response[i]];
+  }
+  // const data = response.reduce((sum,item)=> sum.contact(item),[]);
   ctx.body = string2base64(data.join("\n"));
 });
 router.post('/deploy',async ctx => {
