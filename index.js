@@ -1,25 +1,34 @@
 const koa = require('koa2');
-const crawl = require('./crawler/crawl_ssr4');
-const crawl2 = require('./crawler/crawl_ssr5');
-const crawl3 = require('./crawler/crawl_ssr6');
-const crawl4 = require('./crawler/crawl_ssr7');
-const crawl5 = require('./crawler/crawl_ssr8');
+const crawler = require('./crawler/index');
+const {MySsr} = require('./utils/storager');
 const string2base64 = require('./utils/string2base64');
 const koaRouter = require('koa-router');
 const exec = require('child_process').exec;
-/** 
- * 所有的crawl统一返回一个可以返回ssr地址数组的Promise
-*/
+
+
+const storage = new MySsr();
+
+const update = async () => {
+  const response = await crawler();
+  storage.append(response);
+}
+
+update();
+setInterval(update,3600000);
+
+
 const router = new koaRouter();
 router.get('/',async ctx => {
-  const response = await Promise.all([crawl(),crawl2(),crawl3(),crawl4(),crawl5()]);
-  let data=[];
-  for(let i=0;i<response.length;i++){
-    data=[...data,...response[i]];
-  }
-  // const data = response.reduce((sum,item)=> sum.contact(item),[]);
+  const data = storage.extract();
   ctx.body = string2base64(data.join("\n"));
 });
+router.get('/info',async ctx => {
+  const response = {
+    all:storage.allCount,
+    available:storage.count
+  }
+  ctx.body = JSON.stringify(response);
+})
 router.post('/deploy',async ctx => {
   const result = await new Promise((resolve,reject) => {
     exec('./deploy.sh',function(err,res){

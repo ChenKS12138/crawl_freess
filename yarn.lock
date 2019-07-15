@@ -841,6 +841,11 @@ string.prototype.trim@^1.1.2:
     es-abstract "^1.5.0"
     function-bind "^1.0.2"
 
+tcp-ping@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/tcp-ping/download/tcp-ping-0.1.1.tgz#02dd7f42b5bf7d7cb78d5b7aacefa155fd8f7c0c"
+  integrity sha1-At1/QrW/fXy3jVt6rO+hVf2PfAw=
+
 timm@^1.6.1:
   version "1.6.1"
   resolved "https://registry.npm.taobao.org/timm/download/timm-1.6.1.tgz#5f8aafc932248c76caf2c6af60542a32d3c30701"

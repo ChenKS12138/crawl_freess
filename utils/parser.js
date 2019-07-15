@@ -12,8 +12,9 @@ const ssrParser = (ssrString) => {
   ssrString = base642string(ssrString.slice(6));
   const [ip,port,protocol,method,obfs,base64_password,base64_params] = ssrString.split(':');
   const password = base642string(base64_password);
-  const params = base642string(base64_params);
-  return {method,password,ip,port,protocol,obfs,params};
+  // const params = base642string(base64_params);
+  return {method,password,ip,port,protocol,obfs};
+  // return {method,password,ip,port,protocol,obfs,params};
 }
 
 const ssrGenerator = (ssObject) => {
@@ -22,7 +23,7 @@ const ssrGenerator = (ssObject) => {
 }
 
 const ssGenerator = (ssrObject) => {
-  const {method,password,ip,port};
+  const {method,password,ip,port}=ssrObject;
   return `ss://${string2base64(`${method}:${password}@${ip}:${port}`)}`;
 }
 
