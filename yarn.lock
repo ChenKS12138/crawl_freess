@@ -293,6 +293,13 @@ base64-js@^1.0.2:
   resolved "https://registry.npm.taobao.org/base64-js/download/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
   integrity sha1-yrHmEY8FEJXli1KBrqjBzSK/wOM=
 
+bindings@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npm.taobao.org/bindings/download/bindings-1.5.0.tgz#10353c9e945334bc0511a6d90b38fbc7c9c504df"
+  integrity sha1-EDU8npRTNLwFEabZCzj7x8nFBN8=
+  dependencies:
+    file-uri-to-path "1.0.0"
+
 bmp-js@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npm.taobao.org/bmp-js/download/bmp-js-0.1.0.tgz#e05a63f796a6c1ff25f4771ec7adadc148c07233"
@@ -439,6 +446,11 @@ file-type@^9.0.0:
   version "9.0.0"
   resolved "https://registry.npm.taobao.org/file-type/download/file-type-9.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffile-type%2Fdownload%2Ffile-type-9.0.0.tgz#a68d5ad07f486414dfb2c8866f73161946714a18"
   integrity sha1-po1a0H9IZBTfssiGb3MWGUZxShg=
+
+file-uri-to-path@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/file-uri-to-path/download/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
+  integrity sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=
 
 follow-redirects@1.5.10:
   version "1.5.10"
@@ -710,10 +722,23 @@ ms@^2.1.1:
   resolved "https://registry.npm.taobao.org/ms/download/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
 
+nan@2.14.0:
+  version "2.14.0"
+  resolved "https://registry.npm.taobao.org/nan/download/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
+  integrity sha1-eBj3IgJ7JFmobwKV1DTR/CM2xSw=
+
 negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
+
+netlinkwrapper@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/netlinkwrapper/download/netlinkwrapper-1.1.2.tgz#270139f1d4ad764afb9d267d3f63192a054b92c7"
+  integrity sha1-JwE58dStdkr7nSZ9P2MZKgVLksc=
+  dependencies:
+    bindings "1.5.0"
+    nan "2.14.0"
 
 object-keys@^1.0.12:
   version "1.1.1"
@@ -840,6 +865,20 @@ string.prototype.trim@^1.1.2:
     define-properties "^1.1.2"
     es-abstract "^1.5.0"
     function-bind "^1.0.2"
+
+sync-socket@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/sync-socket/download/sync-socket-1.1.0.tgz#4b5bef5b602cd1224bac66971b6207eb44b2bda5"
+  integrity sha1-S1vvW2As0SJLrGaXG2IH60SyvaU=
+
+tcp-ping-sync@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/tcp-ping-sync/download/tcp-ping-sync-2.0.0.tgz#3b3fea160c0a66bdb9b4e688b92e6aa4c98fb520"
+  integrity sha1-Oz/qFgwKZr25tOaIuS5qpMmPtSA=
+  dependencies:
+    sync-socket "^1.1.0"
+  optionalDependencies:
+    netlinkwrapper "^1.1.1"
 
 tcp-ping@^0.1.1:
   version "0.1.1"

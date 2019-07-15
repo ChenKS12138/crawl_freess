@@ -16,6 +16,7 @@
     "koa-router": "^7.4.0",
     "koa2": "^2.0.0-alpha.7",
     "qrcode-reader": "^1.0.4",
-    "tcp-ping": "^0.1.1"
+    "tcp-ping": "^0.1.1",
+    "tcp-ping-sync": "^2.0.0"
   }
 }
