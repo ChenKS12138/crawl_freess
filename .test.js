@@ -1,3 +1,2 @@
-const moment = require('moment');
-moment.locale('zh-cn');
-console.log(moment().format('LLLL'));
+const crawler = require('./crawler/crawl_ssr9');
+crawler().then(res => console.log(res))
