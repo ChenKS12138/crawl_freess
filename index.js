@@ -25,9 +25,34 @@ router.get('/',async ctx => {
 router.get('/info',async ctx => {
   const response = {
     all:storage.allCount,
-    available:storage.count
+    available:storage.count,
+    rate:`${(storage.count/storage.allCount*100).toFixed(2)}%`,
+    timeStamp:storage.updateTime
   }
   ctx.body = JSON.stringify(response);
+})
+router.get('/refresh',async ctx => {
+  update();
+  const response = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>refresh</title>
+  </head>
+  <body>
+  refreshing...
+  <script>
+  setTimeout(function(){
+    location.href="/info";
+  },1000);
+  </script>
+  </body>
+  </html>
+  `
+  ctx.body=response;
 })
 router.post('/deploy',async ctx => {
   const result = await new Promise((resolve,reject) => {
