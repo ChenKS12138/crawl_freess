@@ -1,1 +1,2 @@
-https://www.appmews.com/ssr.html
+## 爬取SSR地址,并生成SSR订阅源
+## 仅供学习，侵权必删
