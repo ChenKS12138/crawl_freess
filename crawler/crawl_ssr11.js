@@ -10,5 +10,6 @@ const generator = ([ip,port,password,method,time,country]) => ssrGenerator({ip,p
 
 module.exports = function(){
   return axios.get(target)
-  .then(async ({data}) => reg1(data).map(item => generator(reg2(item).map(item => item.slice(19,-5)))));
+  .then(async ({data}) => reg1(data).map(item => generator(reg2(item).map(item => item.slice(19,-5)))))
+  .catch(() => [])
 }

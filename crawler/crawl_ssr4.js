@@ -9,4 +9,5 @@ module.exports = function(){
     const result = text.match(reg).map(item => item.slice(1,-1));
     return result;
   })
+  .catch(() => [])
 }

@@ -27,11 +27,14 @@ router.get('/info',async ctx => {
     all:storage.allCount,
     available:storage.count,
     rate:`${(storage.count/storage.allCount*100).toFixed(2)}%`,
-    timeStamp:storage.updateTime
+    timeStamp:storage.updateTime,
+    timeout:storage.timeout
   }
   ctx.body = JSON.stringify(response);
 })
 router.get('/refresh',async ctx => {
+  const {timeout} = ctx.query;
+  storage.timeout=timeout?parseInt(timeout):storage.timeout;
   update();
   const response = `
   <!DOCTYPE html>

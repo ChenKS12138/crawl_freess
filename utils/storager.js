@@ -7,13 +7,14 @@ class MySsr {
     this.srrSet = new Set();
     this.allSrrSet = new Set();
     this.updateTime = moment().format('LLLL');
+    this.timeout= 1500;
   }
   async append(ssrArray){
     this.allSrrSet = new Set(ssrArray);
     const responses = await Promise.all(ssrArray.map(item => {
       return new Promise (async resolve => {
-        const ojbk = await probe(ssrParser(item));
-        resolve({item,access:ojbk});
+        const {ojbk,avg} = await probe(ssrParser(item),this.timeout);
+        resolve({item,access:ojbk,avg});
       })
     }))
     const available = responses.filter(item => item.access).map(item => item.item);
