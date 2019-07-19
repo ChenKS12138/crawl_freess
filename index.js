@@ -14,7 +14,7 @@ const update = async () => {
 }
 
 update();
-setInterval(update,1800000);
+setInterval(update,600000);
 
 
 const router = new koaRouter();
