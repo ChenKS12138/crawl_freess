@@ -17,12 +17,26 @@ class MySsr {
         resolve({item,access:ojbk,avg});
       })
     }))
-    const available = responses.filter(item => item.access).map(item => item.item);
+    const available = responses.filter(item => item.access).sort((a,b) => a.avg - b.avg).map(item => item.item);
     this.srrSet = new Set(available);
     this.updateTime = moment().format('LLLL');
   }
-  extract(isAll=false){
-    return isAll===false ? Array.from(this.srrSet) : Array.from(this.allSrrSet);
+  async extract(isAll=false){
+    // return isAll===false ? Array.from(this.srrSet) : Array.from(this.allSrrSet);
+    if(isAll === true){
+      return Array.from(this.allSrrSet);
+    }
+    else{
+      const response = await Promise.all(Array.from(this.allSrrSet).map(item => {
+        return new Promise(async resolve => {
+          const {ojbk,avg} = await probe(ssrParser(item),this.timeout);
+          resolve({item,access:ojbk,avg});
+        })
+      }))
+      const available = response.filter(item => item.access).sort((a,b) => a.avg - b.avg).map(item => item.item);
+      this.srrSet = new Set(available);
+      return available;
+    }
   }
   get allCount(){
     return this.allSrrSet.size;
