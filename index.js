@@ -19,7 +19,10 @@ setInterval(update,600000);
 
 const router = new koaRouter();
 router.get('/',async ctx => {
-  const data = await storage.extract();
+  const {n} = ctx.query;
+  let data = await storage.extract();
+  const num = (n === undefined||parseInt(n) === NaN) ? 0 : parseInt(n);
+  data = num === 0 ? data : data.slice(0,Math.min(data.length,n));
   ctx.body = string2base64(data.join("\n"));
 });
 router.get('/info',async ctx => {

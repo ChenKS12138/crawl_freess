@@ -1,2 +1,2 @@
-const crawl = require('./crawler/crawl_ssr13');
+const crawl = require('./crawler/index');
 crawl().then(res => console.log(res));
