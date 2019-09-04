@@ -12,9 +12,13 @@ const crawl11 = require('./crawl_ssr14');
 const crawl12 = require('./crawl_ssr15');
 const crawl13 = require('./crawl_ssr16');
 const crawl14 = require('./crawl_ssr17');
+const crawl15 = require('./crawl_ssr_default');
+
+const taskList = [crawl1, crawl2, crawl3, crawl4, crawl5, crawl6, crawl7, crawl8, crawl9, crawl10, crawl11, crawl12, crawl13, crawl14, crawl15];
 
 const crawler = async () => {
-  const response = await Promise.all([crawl1(),crawl2(),crawl3(),crawl4(),crawl5(),crawl6(),crawl7(),crawl8(),crawl9(),crawl10(),crawl11(),crawl12(),crawl13(),crawl14()]);
+  const response = await Promise.all(taskList.map(fn => fn()));
+  console.log(response);
   const data = response.reduce((sum,item) => sum.concat(item) ,[]);
   return data;
 }
