@@ -22,7 +22,6 @@ export default class Storage {
     const responses:Array<pingResult> =await Promise.all(ssrArray.map(item => {
       return new Promise(async resolve => {
         const { access, avg } = <pingResult>await probe(ssrParser(item), this.timeout);
-        console.log(access, avg);
         resolve({item,access:access,avg});
       })
     }))
