@@ -2,23 +2,32 @@
   "name": "crawl_freess",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
-    "test": "node .test.js",
-    "start": "node index.js"
+    "start": "./node_modules/.bin/ts-node index.ts",
+    "test": "./node_modules/.bin/ts-node ./test/index.test.ts",
+    "test:crawler": "./node_modules/.bin/ts-node ./test/crawler.test.ts",
+    "test:storage": "./node_modules/.bin/ts-node ./test/storage.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/koa": "^2.0.49",
+    "@types/koa-router": "^7.0.42",
+    "@types/node": "^12.7.4",
+    "@types/tcp-ping": "^0.1.0",
     "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.3",
     "jimp": "^0.6.4",
+    "koa": "^2.8.1",
     "koa-router": "^7.4.0",
-    "koa2": "^2.0.0-alpha.7",
     "moment": "^2.24.0",
     "qrcode-reader": "^1.0.4",
     "tcp-ping": "^0.1.1",
-    "tcp-ping-sync": "^2.0.0"
+    "tcp-ping-sync": "^2.0.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.6.2"
   }
 }

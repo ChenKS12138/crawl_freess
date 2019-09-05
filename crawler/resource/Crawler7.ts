@@ -1,4 +1,4 @@
-const { ssrGenerator } = require('../utils/parser.js');
+import {ssrGenerator} from '../../utils/parser'
 
 const defaultObject = [
   {
@@ -15,6 +15,10 @@ const defaultObject = [
   }
 ];
 
-module.exports = function () {
-  return Promise.resolve(defaultObject.map(ssrGenerator))
-};
+export default defaultObject.map(item => {
+  return ({
+    get result() {
+      return Promise.resolve(ssrGenerator(item));
+    }
+  })
+})

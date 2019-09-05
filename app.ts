@@ -1,12 +1,11 @@
-const koa = require('koa2');
-const crawler = require('./crawler/index');
-const {MySsr} = require('./utils/storager');
-const string2base64 = require('./utils/string2base64');
-const koaRouter = require('koa-router');
-const exec = require('child_process').exec;
+import koa from 'koa';
+import koaRouter from 'koa-router';
+import { exec } from 'child_process';
+import Storage from './utils/storager';
+import { string2base64 } from './utils/parser';
+import crawler from './crawler/index';
 
-
-const storage = new MySsr();
+const storage:Storage = new Storage();
 
 const update = async () => {
   const response = await crawler();
