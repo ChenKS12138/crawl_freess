@@ -1,7 +1,14 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-04 21:13:00
+ * @LastEditTime: 2019-09-07 00:41:15
+ * @LastEditors: Please set LastEditors
+ */
 import axios, { AxiosResponse } from 'axios';
 
 // crawler timeout
-axios.defaults.timeout = 20000;
+axios.defaults.timeout = 30000;
 
 interface Icrawler {
   url: string|null,
@@ -19,7 +26,8 @@ export default class BaseCrawler implements Icrawler {
   public reg:RegExp|null = null ;
   public afterReg:Function | Array<Function>|null =null ;
   public getHttpResponse: () => Promise<AxiosResponse>;
-  public preReg: Function | null = null;
+  public preReg: Function | Array<Function> |null = null;
+  public isTest: boolean = false;
   public static CrawlerPool: Set<BaseCrawler> = new Set();
   
   constructor(url: string, method: HttpMethod = 'get',headers:Object|undefined=undefined) {
@@ -72,9 +80,29 @@ export default class BaseCrawler implements Icrawler {
         }
       }
       catch (e) {
-        console.log(`ERROR ${this.url}`);
+        if (this.isTest) {
+          console.log(e);
+        }
+        else {
+          console.log(`ERROR ${this.url}`);
+        }
         resolve([]);
       }
     })
+  }
+  public static async RunTest(url: string, method: HttpMethod = 'get', reg: RegExp, afterReg: Function | Array<Function>, preReg?: Function | Array<Function>|undefined) {
+    const testCrawler = new BaseCrawler(url, method);
+    testCrawler.isTest = true;
+    if (reg) {
+      testCrawler.reg = reg;
+    }
+    if (preReg) {
+      testCrawler.preReg = preReg;
+    }
+    if (afterReg) {
+      testCrawler.afterReg = afterReg;
+    }
+    const httpResponse = await testCrawler.result;
+    return httpResponse;
   }
 }

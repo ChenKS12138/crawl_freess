@@ -13,7 +13,7 @@ class Crawler6 extends BaseCrawler {
 }
 
 const target = [
-  'https://bihai.ml/free/ssr/',
+  // 'https://bihai.ml/free/ssr/',
   'https://qiaomenzhuanfx.netlify.com/'
 ];
 

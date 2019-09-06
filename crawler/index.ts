@@ -4,8 +4,8 @@ import Storage from '../utils/storager';
 import './resource/Crawler1';
 import './resource/Crawler2';
 import './resource/Crawler3';
-import './resource/Crawler4';
-import './resource/Crawler5';
+// import './resource/Crawler4';
+// import './resource/Crawler5';
 import './resource/Crawler6';
 import './resource/Crawler7';
 

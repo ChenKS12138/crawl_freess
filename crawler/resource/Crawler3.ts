@@ -14,11 +14,15 @@ class Crawler3 extends BaseCrawler {
 
 const target = [
   'https://raw.githubusercontent.com/ssrsub/ssr/master/ssrsub',
-  'https://raw.githubusercontent.com/AmazingDM/sub/master/ssrshare.com',
+  // 'https://raw.githubusercontent.com/AmazingDM/sub/master/ssrshare.com',
   'https://yzzz.ml/freessr/',
   'https://raw.githubusercontent.com/voken100g/AutoSSR/master/online',
   'https://raw.githubusercontent.com/voken100g/AutoSSR/master/stable',
   'https://heikejilaila.xyz/keji.php?id=22c7b9fdda20bb7405b270cd75971f66',
+  'https://prom-php.herokuapp.com/cloudfra_ssr.txt',
+  'https://heikejilaila.xyz/keji.php?id=859304b7153cc656391edb26ab9d181b',
+  'https://n55.pw/link/h6BpeXKqtrkQiS1z',
+  'https://heikejilaila.xyz/keji.php?id=390acc194751aa8bf87c28e3809831db'
 ]
 
 target.forEach(url => new Crawler3(url));
