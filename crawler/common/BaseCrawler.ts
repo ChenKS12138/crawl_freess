@@ -1,5 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
+// crawler timeout
+axios.defaults.timeout = 20000;
+
 interface Icrawler {
   url: string|null,
   reg: RegExp|null,
@@ -10,6 +13,7 @@ interface Icrawler {
 
 type HttpMethod = 'get' | 'post';
 
+// BaseCrawler
 export default class BaseCrawler implements Icrawler {
   public url: string|null = null;
   public reg:RegExp|null = null ;
@@ -28,8 +32,15 @@ export default class BaseCrawler implements Icrawler {
     return new Promise(async resolve => {
       try {
         if (this.url !== null) {
+          const startTime = Date.now();
+          
+          // crawling data from assigned url
           let { data: httpResponse } = await this.getHttpResponse();
 
+          // print time of this request
+          console.log(`${Date.now() - startTime}ms ${this.url}`);
+
+          // process response data before match 
           if (this.preReg !== null) {
             if (Array.isArray(this.preReg)) {
               this.preReg.forEach(fn => httpResponse = fn(httpResponse));
@@ -39,10 +50,12 @@ export default class BaseCrawler implements Icrawler {
             }
           }
 
+          // match response data and return an array
           if (this.reg !== null) {
             httpResponse = httpResponse.match(this.reg);
           }
 
+          // process the matched data
           if (this.afterReg !== null) {
             if (Array.isArray(this.afterReg)) {
               this.afterReg.forEach(fn => httpResponse = fn(httpResponse));
@@ -59,7 +72,7 @@ export default class BaseCrawler implements Icrawler {
         }
       }
       catch (e) {
-        console.log(e.response,e.config);
+        console.log(`ERROR ${this.url}`);
         resolve([]);
       }
     })

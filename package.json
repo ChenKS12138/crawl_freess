@@ -5,7 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "start": "./node_modules/.bin/ts-node index.ts",
-    "test": "./node_modules/.bin/ts-node ./test/index.test.ts",
+    "test" : "./node_modules/.bin/mocha -r ./node_modules/ts-node/register ./test/index.test.ts",
+    "test:index": "./node_modules/.bin/ts-node ./test/index.test.ts",
     "test:crawler": "./node_modules/.bin/ts-node ./test/crawler.test.ts",
     "test:storage": "./node_modules/.bin/ts-node ./test/storage.test.ts"
   },
@@ -29,5 +30,9 @@
     "tcp-ping-sync": "^2.0.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.6.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.2.0"
   }
 }
