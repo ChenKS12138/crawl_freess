@@ -1,4 +1,5 @@
-import {ssrGenerator} from '../../utils/parser'
+import { ssrGenerator } from '../../utils/parser';
+import BaseCrawler from '../common/BaseCrawler';
 
 const defaultObject = [
   {
@@ -15,10 +16,15 @@ const defaultObject = [
   }
 ];
 
-export default defaultObject.map(item => {
-  return ({
-    get result() {
-      return Promise.resolve(ssrGenerator(item));
-    }
-  })
-})
+class Instance extends BaseCrawler {
+  public ssrAddress: string ;
+  constructor(ssr: string) {
+    super('null', 'get');
+    this.ssrAddress = ssr;
+  }
+  public get result() {
+    return Promise.resolve([this.ssrAddress]);
+  }
+}
+
+defaultObject.forEach(item => new Instance(ssrGenerator(item)));

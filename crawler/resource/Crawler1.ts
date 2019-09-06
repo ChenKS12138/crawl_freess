@@ -15,4 +15,4 @@ const target = [
   'https://raw.githubusercontent.com/iziming/FreeSSR/master/freenodeplain.txt'
 ]
 
-export default target.map(url => new Crawler1(url));
+target.forEach(url => new Crawler1(url));

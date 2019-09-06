@@ -17,4 +17,4 @@ const target = [
   'https://qiaomenzhuanfx.netlify.com/'
 ];
 
-export default target.map(url => new Crawler6(url));
+target.forEach(url => new Crawler6(url));

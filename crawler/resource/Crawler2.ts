@@ -14,4 +14,4 @@ const target = [
   'http://nulastudio.org/Freedom/'
 ]
 
-export default target.map(url => new Crawler2(url));
+target.forEach(url => new Crawler2(url));

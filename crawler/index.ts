@@ -1,13 +1,37 @@
-import c1 from './resource/Crawler1';
-import c2 from './resource/Crawler2';
-import c3 from './resource/Crawler3';
-import c4 from './resource/Crawler4';
-import c5 from './resource/Crawler5';
-import c6 from './resource/Crawler6';
-import c7 from './resource/Crawler7';
+import BaseCrawler from './common/BaseCrawler';
+import Storage from '../utils/storager';
 
-export default async function () {
-  const crawlers = [...c1, ...c2, ...c3, ...c4, ...c5, ...c6,...c7];
-  const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
-  return crawlerResponse.reduce((total,current) => total.concat(current),[]);
+import './resource/Crawler1';
+import './resource/Crawler2';
+import './resource/Crawler3';
+import './resource/Crawler4';
+import './resource/Crawler5';
+import './resource/Crawler6';
+import './resource/Crawler7';
+
+export default class Crawler {
+  public storage: Storage = new Storage();
+
+  constructor(interval: number = 600000) {
+    this.CrawlerData();
+    if (interval !== 0) {
+      setInterval(this.CrawlerData, interval);
+    }
+  }
+
+  public async CrawlerData() {
+    const crawlers = Array.from(BaseCrawler.CrawlerPool);
+    const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
+    this.storage.append(crawlerResponse.reduce((total,current) => total.concat(current),[]));
+  }
+
+  public getData() {
+    return this.storage.extract();
+  }
+
+  public static async RunTest() {
+    const crawlers = Array.from(BaseCrawler.CrawlerPool);
+    const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
+    return crawlerResponse.reduce((total,current) => total.concat(current),[]);
+  }
 }

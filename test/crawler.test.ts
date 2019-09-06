@@ -1,2 +1,3 @@
-import crawl from '../crawler/index';
-crawl().then(res => console.log(res));
+import Crawler from '../crawler/index';
+Crawler.RunTest()
+  .then(response => console.log(response));

@@ -14,4 +14,4 @@ const target = [
   'https://www.youneed.win/free-ss'
 ];
 
-export default target.map(url => new Crawler5(url));
+target.forEach(url => new Crawler5(url));

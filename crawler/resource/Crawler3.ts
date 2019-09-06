@@ -22,4 +22,4 @@ const target = [
   'https://heikejilaila.xyz/keji.php?id=22c7b9fdda20bb7405b270cd75971f66',
 ]
 
-export default target.map(url => new Crawler3(url));
+target.forEach(url => new Crawler3(url));

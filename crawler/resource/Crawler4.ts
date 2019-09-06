@@ -20,4 +20,4 @@ const target = [
   'https://www.liesauer.net/yogurt/subscribe?ACCESS_TOKEN=DAYxR3mMaZAsaqUb'
 ];
 
-export default target.map(url => new Crawler4(url));
+target.forEach(url => new Crawler4(url));

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 interface Icrawler {
   url: string|null,
@@ -15,14 +15,16 @@ export default class BaseCrawler implements Icrawler {
   public reg:RegExp|null = null ;
   public afterReg:Function | Array<Function>|null =null ;
   public getHttpResponse: () => Promise<AxiosResponse>;
-  public preReg:Function|null = null;
-
+  public preReg: Function | null = null;
+  public static CrawlerPool: Set<BaseCrawler> = new Set();
+  
   constructor(url: string, method: HttpMethod = 'get',headers:Object|undefined=undefined) {
     this.url = url;
-    this.getHttpResponse = () => axios({url,method,headers});
+    this.getHttpResponse = () => axios({ url, method, headers });
+    BaseCrawler.CrawlerPool.add(this);
   }
 
-  get result():Promise<Array <string> > {
+  public get result():Promise<Array <string> > {
     return new Promise(async resolve => {
       try {
         if (this.url !== null) {
@@ -57,7 +59,7 @@ export default class BaseCrawler implements Icrawler {
         }
       }
       catch (e) {
-        // console.log(e);
+        console.log(e.response,e.config);
         resolve([]);
       }
     })
