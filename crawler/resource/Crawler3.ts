@@ -13,7 +13,6 @@ class Crawler3 extends BaseCrawler {
 }
 
 const target = [
-  'https://raw.githubusercontent.com/ImLaoD/sub/master/ssrshare.com',
   'https://raw.githubusercontent.com/ssrsub/ssr/master/ssrsub',
   'https://raw.githubusercontent.com/AmazingDM/sub/master/ssrshare.com',
   'https://yzzz.ml/freessr/',
