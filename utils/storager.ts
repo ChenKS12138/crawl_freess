@@ -15,7 +15,7 @@ export default class Storage {
     this.ssrSet = new Set();
     this.allssrSet = new Set();
     this.updateTime = moment().format('LLLL');
-    this.timeout= 1500;
+    this.timeout= 500;
   }
   async append(ssrArray:Array<string>){
     this.allssrSet = new Set(ssrArray);

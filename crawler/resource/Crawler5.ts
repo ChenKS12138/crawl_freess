@@ -17,7 +17,7 @@ class Crawler5 extends BaseCrawler{
   }
 }
 
-// 很奇怪 使用axios会连接超时，使用wget正常
+// not stable
 const target = [
   'https://www.youneed.win/free-ss'
 ];

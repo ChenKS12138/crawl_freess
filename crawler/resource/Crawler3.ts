@@ -18,6 +18,7 @@ const target = [
   'https://yzzz.ml/freessr/',
   'https://raw.githubusercontent.com/voken100g/AutoSSR/master/online',
   'https://raw.githubusercontent.com/voken100g/AutoSSR/master/stable',
+  'https://raw.githubusercontent.com/voken100g/AutoSSR/master/recent',
   'https://heikejilaila.xyz/keji.php?id=22c7b9fdda20bb7405b270cd75971f66',
   'https://prom-php.herokuapp.com/cloudfra_ssr.txt',
   'https://heikejilaila.xyz/keji.php?id=859304b7153cc656391edb26ab9d181b',

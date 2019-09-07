@@ -90,7 +90,7 @@ export default class BaseCrawler implements Icrawler {
       }
     })
   }
-  public static async RunTest(url: string, method: HttpMethod = 'get', reg: RegExp, afterReg: Function | Array<Function>, preReg?: Function | Array<Function>|undefined) {
+  public static async RunTest(url: string, method: HttpMethod = 'get', reg?: RegExp, afterReg?: Function | Array<Function>, preReg?: Function | Array<Function>|undefined) {
     const testCrawler = new BaseCrawler(url, method);
     testCrawler.isTest = true;
     if (reg) {
