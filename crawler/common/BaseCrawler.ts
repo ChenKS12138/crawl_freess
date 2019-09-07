@@ -72,6 +72,7 @@ export default class BaseCrawler implements Icrawler {
               httpResponse = this.afterReg(httpResponse);
             }
           }
+          // console.log(httpResponse, this.url);
           
           resolve(httpResponse);
         }

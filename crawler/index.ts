@@ -1,13 +1,12 @@
 import BaseCrawler from './common/BaseCrawler';
 import Storage from '../utils/storager';
 
-import './resource/Crawler1';
-import './resource/Crawler2';
-import './resource/Crawler3';
-// import './resource/Crawler4';
-import './resource/Crawler5';
-import './resource/Crawler6';
-import './resource/Crawler7';
+// import './resource/Crawler_011';
+import './resource/Crawler_022';
+import './resource/Crawler_113';
+import './resource/Crawler_044';
+import './resource/Crawler_163';
+import './resource/Crawler_default';
 
 export default class Crawler {
   // process and storage crawled data

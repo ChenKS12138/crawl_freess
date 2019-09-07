@@ -11,8 +11,7 @@ class Crawler1 extends BaseCrawler {
 }
 
 const target = [
-  'https://raw.githubusercontent.com/BeanWei/freeSSR/master/README.md',
-  'https://raw.githubusercontent.com/iziming/FreeSSR/master/freenodeplain.txt'
+  'https://raw.githubusercontent.com/BeanWei/freeSSR/master/README.md'
 ]
 
 target.forEach(url => new Crawler1(url));
