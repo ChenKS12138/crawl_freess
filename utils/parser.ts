@@ -14,12 +14,17 @@ export const ssrParser:Function = (ssrString:String):Object => {
   ssrString = base642string(ssrString.slice(6));
   const [ip,port,protocol,method,obfs,base64_password,base64_params] = ssrString.split(':');
   const password = base642string(base64_password);
-  return {method,password,ip,port,protocol,obfs};
+  return {method,password,ip,port,protocol,obfs,url:ssrString};
 }
 
-export const ssrGenerator:Function = (ssObject:commonObj):String => {
-  const {method,password,ip,port,protocol='origin',obfs='plain',params_base64=''} = ssObject;
-  return `ssr://${string2base64(`${ip}:${port}:${protocol}:${method}:${obfs}:${string2base64(password)}:${string2base64(params_base64)}`)}`;
+export const ssrGenerator: Function = (ssrObject: commonObj, useUrl: boolean = false): String => {
+  if (useUrl) {
+    return ssrObject.url;
+  }
+  else {
+    const {method,password,ip,port,protocol='origin',obfs='plain',params_base64=''} = ssrObject;
+    return `ssr://${string2base64(`${ip}:${port}:${protocol}:${method}:${obfs}:${string2base64(password)}:${string2base64(params_base64)}`)}`;
+  }
 }
   
 export const ssGenerator:Function = (ssrObject:commonObj):String => {

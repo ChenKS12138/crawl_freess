@@ -1,47 +1,37 @@
 import BaseController from './common/BaseController';
 import { Context } from 'koa';
 import Crawler from '../../crawler/index';
+import Probe from '../../utils/probe';
 import {string2base64} from '../../utils/parser'
-
-const template = `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>refresh</title>
-  </head>
-  <body>
-  refreshing...
-  <script>
-  setTimeout(function(){
-    location.href="/info";
-  },1000);
-  </script>
-  </body>
-  </html>
-`;
+import commonObj from '../../utils/interface/commonObj';
+import Storage from '../../utils/storage';
+import refreshView from '../views/refresh';
 
 class Serve extends BaseController {
   static crawler: Crawler = new Crawler();
 
   @BaseController.GET('/')
-  async index(ctx:Context) {
+  public static async index(ctx:Context) {
     const { n } = ctx.query;
-    let data = await Serve.crawler.getData();
-    const num = (n === undefined||parseInt(n) === NaN) ? 0 : parseInt(n);
-    data = num === 0 ? data : data.slice(0,Math.min(data.length,n));
-    ctx.body = string2base64(data.join("\n"));
+    const parsedData:Array<commonObj> = Storage.parsedData;
+    let urlArray:Array<string> = (await Probe.pingAll(parsedData)).filter(item => item.access).map(item => item.url);
+    const num = (n === undefined||parseInt(n) === NaN || n < 0) ? 0 : parseInt(n);
+    urlArray = num === 0 ? urlArray : urlArray.slice(0,Math.min(urlArray.length,n));
+    ctx.body = string2base64(urlArray.join("\n"));
   }
 
   @BaseController.GET('/info')
-  async info(ctx: Context) {
-    const {allCount,count,timeout,updateTime } = Serve.crawler.storage;
+  public static async info(ctx: Context) {
+    const updateTime = Storage.timeStamp;
+    const allCount = Storage.size;
+    const timeout = Storage.timeout;
+    const parsedData:Array<commonObj> = Storage.parsedData;    
+    const availableCount = (await Probe.pingAll(parsedData)).filter(item => item.access).length;
+
     const response = {
       all: allCount,
-      available: count,
-      rate:`${(count/allCount*100).toFixed(2)}%`,
+      available: availableCount,
+      rate:`${(availableCount/allCount*100).toFixed(2)}%`,
       timeStamp:updateTime,
       timeout:timeout
     }
@@ -49,11 +39,16 @@ class Serve extends BaseController {
   }
 
   @BaseController.GET('/refresh')
-  async refresh(ctx:Context) {
+  public static async refresh(ctx:Context) {
     const { timeout } = ctx.query;
-    const { storage } = Serve.crawler;
-    storage.timeout=timeout?parseInt(timeout):storage.timeout;
-    Serve.crawler.CrawlerData();
-    ctx.body = template;
+    if (Number.isInteger(timeout) && timeout >0) {
+      Storage.timeout = timeout;
+      Serve.crawler.CrawlerData();
+      ctx.body = refreshView;
+    }
+    else {
+      ctx.status = 501;
+      ctx.body = "Illegal Parameter Substitution";
+    }
   }
 }

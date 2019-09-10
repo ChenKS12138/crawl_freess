@@ -1,7 +1,6 @@
 import BaseCrawler from './common/BaseCrawler';
-import Storage from '../utils/storager';
+import Storage from '../utils/storage';
 
-// import './resource/Crawler_011';
 import './resource/Crawler_022';
 import './resource/Crawler_113';
 import './resource/Crawler_044';
@@ -10,8 +9,6 @@ import './resource/Crawler_default';
 
 export default class Crawler {
   // process and storage crawled data
-  public storage: Storage = new Storage();
-
   constructor(interval: number = 600000) {
     this.CrawlerData();
 
@@ -22,21 +19,19 @@ export default class Crawler {
   }
 
   // the method to crawl data
-  public async CrawlerData() {
+  public async CrawlerData():Promise<void>{
     const crawlers = Array.from(BaseCrawler.CrawlerPool);
     const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
-    this.storage.append(crawlerResponse.reduce((total,current) => total.concat(current),[]));
-  }
-
-  // get crawl data
-  public getData() {
-    return this.storage.extract();
+    Storage.data = crawlerResponse.reduce((total,current) => total.concat(current),[]);
   }
 
   // static method for test
-  public static async RunTest() {
-    const crawlers = Array.from(BaseCrawler.CrawlerPool);
-    const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
-    return crawlerResponse.reduce((total,current) => total.concat(current),[]);
+  public static async RunTest(): Promise<Array<string>>{
+    const testCrawler = new Crawler(0);
+    await testCrawler.CrawlerData();
+    return Storage.data;
+    // const crawlers = Array.from(BaseCrawler.CrawlerPool);
+    // const crawlerResponse = await Promise.all(crawlers.map(item => item.result));
+    // return crawlerResponse.reduce((total,current) => total.concat(current),[]);
   }
 }

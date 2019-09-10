@@ -1,4 +1,5 @@
 export default interface commonObj {
+  url:string,
   method: string,
   password: string,
   ip: string,
