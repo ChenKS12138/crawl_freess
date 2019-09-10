@@ -9,19 +9,26 @@ export default class Storage {
   public static timeStamp: string = moment().format('LLLL');
   public static timeout: number = 800;
   
+  // accept Array <string>
   public static set data(SsrArray: Array<string>) {
     SsrArray.forEach(item => this.SsrSet.add(item));
     this.timeStamp = moment().format('LLLL');
   }
 
+  // return Array <string>
   public static get data():Array<string>{
     return Array.from(this.SsrSet);
   }
 
-  public static get parsedData():Array<commonObj>{
-    return this.data.map(item => ssrParser(item));
+  // return Array <commonObj>
+  public static get parsedData(): Array<commonObj>{
+    return this.data.map(item => {
+      const parsed = ssrParser(item);
+      return { ...parsed, url: item };
+    });
   }
 
+  // return number
   public static get size():number {
     return this.SsrSet.size;
   }
