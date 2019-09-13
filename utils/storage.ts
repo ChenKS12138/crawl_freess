@@ -11,7 +11,7 @@ export default class Storage {
   
   // accept Array <string>
   public static set data(SsrArray: Array<string>) {
-    SsrArray.forEach(item => this.SsrSet.add(item));
+    this.SsrSet = new Set(SsrArray);
     this.timeStamp = moment().format('LLLL');
   }
 
