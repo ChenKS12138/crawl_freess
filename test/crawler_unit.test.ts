@@ -3,14 +3,9 @@ import * as PRE_REG from '../crawler/common/CommonPreReg';
 import * as REG from '../crawler/common/CommonReg';
 import * as AFTER_REG from '../crawler/common/CommonAfterReg';
 
-// const preReg = PRE_REG.COMMON_PREREG1;
-const reg = REG.REG_1;
-const preReg = PRE_REG.COMMON_PREREG1;
-const afterReg = AFTER_REG.AFTERREG_3;
-// const afterReg = AFTER_REG.AFTERREG_2;
-const url = 'https://raw.githubusercontent.com/BeanWei/freeSSR/master/README.md';
+const url = 'https://t.me/s/v2list';
 
-BaseCrawler.RunTest(url, 'get',reg,afterReg)
+BaseCrawler.RunTest(url, 'get')
   .then(response => {
     console.log(response);
   });

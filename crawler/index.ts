@@ -5,6 +5,7 @@ import './resource/Crawler_022';
 import './resource/Crawler_113';
 import './resource/Crawler_044';
 import './resource/Crawler_163';
+import './resource/Crawler_273';
 import './resource/Crawler_default';
 
 export default class Crawler {

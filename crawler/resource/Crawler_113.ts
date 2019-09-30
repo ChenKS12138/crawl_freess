@@ -25,7 +25,8 @@ const target = [
   'https://n55.pw/link/h6BpeXKqtrkQiS1z',
   'https://heikejilaila.xyz/keji.php?id=390acc194751aa8bf87c28e3809831db',
   'https://raw.githubusercontent.com/iziming/FreeSSR/master/freenodeplain.txt',
-  'https://raw.githubusercontent.com/BeanWei/freeSSR/master/README.md'
+  'https://raw.githubusercontent.com/BeanWei/freeSSR/master/README.md',
+  'https://yangwangssr.000webhostapp.com/'
 ]
 
 target.forEach(url => new Crawler3(url));

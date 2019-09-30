@@ -1,12 +1,12 @@
 import BaseCrawler from '../common/BaseCrawler';
-import {REG_6 } from '../common/CommonReg';
+import {REG_7 } from '../common/CommonReg';
 import { AFTERREG_3 } from '../common/CommonAfterReg';
-import { COMMON_PREREG1} from '../common/CommonPreReg';
+import { COMMON_PREREG2} from '../common/CommonPreReg';
 
 class Crawler6 extends BaseCrawler {
-  reg = REG_6;
+  reg = REG_7;
   afterReg = AFTERREG_3;
-  preReg = COMMON_PREREG1;
+  preReg = COMMON_PREREG2;
   constructor(url: string) {
     super(url, 'get');
   }

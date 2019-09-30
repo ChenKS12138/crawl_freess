@@ -25,3 +25,9 @@ export const AFTERREG_4 = [
     return dataList.map(generator);
   }
 ];
+
+export const AFTERREG_5 = [
+  function (dataList:Array<string>) {
+    return dataList.map(item => item.substr(1, item.length - 1));
+  }
+]
