@@ -22,7 +22,7 @@
     "@types/koa-router": "^7.0.42",
     "@types/node": "^12.7.4",
     "@types/tcp-ping": "^0.1.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "jimp": "^0.6.4",
     "koa": "^2.8.1",
