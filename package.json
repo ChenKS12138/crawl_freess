@@ -27,7 +27,7 @@
     "jimp": "^0.6.4",
     "koa": "^2.8.1",
     "koa-router": "^7.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "qrcode-reader": "^1.0.4",
     "tcp-ping": "^0.1.1",
     "tcp-ping-sync": "^2.0.0",
